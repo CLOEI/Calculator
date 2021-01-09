@@ -5,34 +5,59 @@ let input = '';
 let formula = '';
 
 buttonContainer.addEventListener('click', e => {
-    const text = e.target.textContent;
-    if(text.length > 3){
-        return;
-    }else if(text === 'AC'){
+    const el = e.target;
+    const operator = ['%', '/', '*', '-', '+'];
+    if(el.textContent.length > 3) return;
+    if(el.classList.contains('operator') && input.length < 1) return;
+
+    switch(el.textContent){
+        case 'AC':
+            input = '';
+            formula = '';
+            updateScreen();
+            return;
+        case '%':
+            input = input / 100;
+            updateScreen();
+            return;
+        case '=':
+            formula += input;
+            input = String(new Function('return ' + formula)());
+            formula = '';
+            updateScreen();
+            return;
+        case '+/-':
+            if(input.indexOf('-') < 0){
+                input = '-'.concat(input);
+            }else{
+                input = input.substr(1, input.length);
+            }
+            updateScreen();
+            return;
+        case '.':
+            if(input.indexOf('.') < 0) input += el.textContent;
+            updateScreen();
+            return;
+    }
+
+    if(el.classList.contains('operator')) {
+        for(let item of operator){
+            if(formula.indexOf(item) > 0){
+                formula += input;
+                input = '';
+                formula = String(new Function('return ' + formula)());
+                formula += el.textContent;
+                updateScreen();
+                return;
+            }
+        }
+        formula += input + el.textContent;
         input = '';
-        formula = '';
-        updateScreen();
-        return;
-    }else if(input.length >= 1 && text === '%'){
-        input = input / 100;
-        updateScreen();
-        return;
-    }else if(text == '.'){
-        if(input.indexOf('.') > 0) return;
-    }else if(e.target.classList.contains('operator') && text != '='){
-        formula += input + e.target.textContent;
-        input = '';
-        updateScreen();
-        return;
-    }else if(text == '='){
-        formula += input;
-        input = String(new Function('return ' + formula)());
-        formula = '';
         updateScreen();
         return;
     }
 
-    input += text;
+    input += el.textContent;
     updateScreen();
 })
 
@@ -44,8 +69,4 @@ backspace.addEventListener('click', e => {
 
 const updateScreen = () => {
     document.querySelector('.input').textContent = input || 0;
-}
-
-const calculate = () => {
-    input = new Function('return formula');
 }
