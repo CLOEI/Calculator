@@ -7,7 +7,6 @@
 }
 
 body {
-  background: #020024;
   background: -webkit-gradient(linear, left top, right top, from(#1f98b3), to(#1db599));
   background: linear-gradient(to right, #1f98b3, #1db599);
   display: -webkit-box;
@@ -19,6 +18,12 @@ body {
 
 .grid-container {
   margin: auto;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   -webkit-box-shadow: 0 5px 13px black;
           box-shadow: 0 5px 13px black;
   border: 10px solid rgba(255, 255, 255, 0.75);

@@ -22,6 +22,7 @@ number.forEach(element => {
 
 operator.forEach(element => {
     element.addEventListener('click', e => {
+        if(input.length < 1) return;
         for(let operator of operatorList){
             if(formula.includes(operator)){
                 formula += input;
@@ -51,6 +52,7 @@ percentage.addEventListener('click', e => {
 })
 
 plusmin.addEventListener('click', e => {
+    if(input.length < 1) return;
     if(input.includes('-')){
         input = input.substr(1, input.length);
     }else{

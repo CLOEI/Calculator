@@ -7,7 +7,6 @@
 }
 
 body {
-  background: rgb(2, 0, 36);
   background: linear-gradient(to right, rgb(31, 152, 179), rgb(29, 181, 153));
   display: flex;
   height: 100vh;
@@ -16,6 +15,9 @@ body {
 
 .grid-container {
   margin: auto;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
   box-shadow: 0 5px 13px black;
   border: 10px solid rgba(255, 255, 255, 0.75);
   border-radius: 10px;
