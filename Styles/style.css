@@ -26,12 +26,12 @@ body {
           user-select: none;
   -webkit-box-shadow: 0 5px 13px black;
           box-shadow: 0 5px 13px black;
-  border: 10px solid rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px;
   border-radius: 10px;
 }
 
 .grid-container .screen-top {
-  background-color: rgba(255, 255, 255, 0.75);
   color: rgba(0, 0, 0, 0.75);
   text-align: right;
   word-wrap: break-word;
@@ -53,7 +53,6 @@ body {
   display: -ms-flexbox;
   display: flex;
   padding: 0.5rem 0;
-  background-color: rgba(255, 255, 255, 0.75);
   border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 
@@ -81,7 +80,6 @@ body {
 .grid-container .buttons div {
   padding: 1rem;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.166);
   color: rgba(0, 0, 0, 0.75);
 }
