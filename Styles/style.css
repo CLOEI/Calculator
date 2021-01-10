@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -6,101 +7,85 @@
 }
 
 body {
+  background: #020024;
+  background: -webkit-gradient(linear, left top, right top, from(#1f98b3), to(#1db599));
+  background: linear-gradient(to right, #1f98b3, #1db599);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  font-family: "Roboto", sans-serif;
 }
 
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border-radius: 5px;
+.grid-container {
   margin: auto;
-  width: 500px;
-  background-color: #e8eae6;
-  color: #000;
+  -webkit-box-shadow: 0 5px 13px black;
+          box-shadow: 0 5px 13px black;
+  border: 10px solid rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
 }
 
-.container .screen-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.container .screen-container .input {
-  justify-self: flex-end;
+.grid-container .screen-top {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.75);
   text-align: right;
-  padding: 1rem 1rem;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-.container .screen-container .bottom-screen {
+.grid-container .screen-top div:first-child {
+  font-size: small;
+  padding: 10px 5px;
+}
+
+.grid-container .screen-top div:last-child {
+  font-size: large;
+  padding: 10px 5px;
+}
+
+.grid-container .screen-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 1rem;
-  padding: 0.5rem;
-  border-top: 1px solid black;
+  padding: 0.5rem 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-.container .screen-container .bottom-screen a {
-  color: black;
-}
-
-.container .screen-container .bottom-screen .backspace {
+.grid-container .screen-bottom svg {
   margin-left: auto;
   cursor: pointer;
 }
 
-.container .button-container {
-  margin: 0 1rem;
-  padding: 1rem 0;
+.grid-container .screen-bottom a {
+  text-decoration: none;
+}
+
+.grid-container .screen-bottom a img {
+  width: 16px;
+}
+
+.grid-container .buttons {
   display: -ms-grid;
   display: grid;
+  cursor: pointer;
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+}
+
+.grid-container .buttons div {
+  padding: 1rem;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.166);
+  color: rgba(0, 0, 0, 0.75);
 }
 
-.container .button-container div {
-  padding: 1rem 0.5rem;
-  background-color: #a9aca7;
-  border-radius: 3rem;
+.grid-container .buttons div:hover {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
-.container .button-container div:hover {
-  background-color: #a5a7a3;
-  width: 100%;
-}
-
-.container .button-container .operator {
-  background-color: #84d533;
-  color: #313131;
-}
-
-.container .button-container .operator:hover {
-  background-color: #77c02d;
-}
-
-.container .button-container .equal {
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 2;
-  grid-column: 3/5;
-}
-
-@media (max-width: 768px) {
-  body {
-    background-color: #e8eae6;
-  }
+.grid-container .buttons div:last-child {
+  grid-column: span 2;
 }
 /*# sourceMappingURL=style.css.map */

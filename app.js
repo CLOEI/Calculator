@@ -1,72 +1,76 @@
-const buttonContainer = document.querySelector('.button-container');
-const backspace = document.querySelector('.backspace');
-const operatorList = document.querySelectorAll('.operator');
+const number = document.querySelectorAll('[data-number]');
+const operator = document.querySelectorAll('[data-operator]');
+const clearall = document.querySelector('[data-clearall]');
+const plusmin = document.querySelector('[data-plusmin]');
+const percentage = document.querySelector('[data-percentage]');
+const equal = document.querySelector('[data-equal]');
+const backspace = document.querySelector('[data-delete]');
+
 let input = '';
 let formula = '';
+const operatorList = ['/', '*', '-', '+'];
 
-buttonContainer.addEventListener('click', e => {
-    const el = e.target;
-    const operator = ['%', '/', '*', '-', '+'];
-    if(el.textContent.length > 3) return;
-    if(el.classList.contains('operator') && input.length < 1) return;
+number.forEach(element => {
+    element.addEventListener('click', e => { 
+        if(e.target.textContent == '.'){
+            if(input.includes('.')) return;
+        }      
+        input += e.target.textContent;
+        updateScreen();
+    })
+})
 
-    switch(el.textContent){
-        case 'AC':
-            input = '';
-            formula = '';
-            updateScreen();
-            return;
-        case '%':
-            input = input / 100;
-            updateScreen();
-            return;
-        case '=':
-            formula += input;
-            input = String(new Function('return ' + formula)());
-            formula = '';
-            updateScreen();
-            return;
-        case '+/-':
-            if(input.indexOf('-') < 0){
-                input = '-'.concat(input);
-            }else{
-                input = input.substr(1, input.length);
-            }
-            updateScreen();
-            return;
-        case '.':
-            if(input.indexOf('.') < 0) input += el.textContent;
-            updateScreen();
-            return;
-    }
-
-    if(el.classList.contains('operator')) {
-        for(let item of operator){
-            if(formula.indexOf(item) > 0){
+operator.forEach(element => {
+    element.addEventListener('click', e => {
+        for(let operator of operatorList){
+            if(formula.includes(operator)){
                 formula += input;
-                input = '';
                 formula = String(new Function('return ' + formula)());
-                formula += el.textContent;
+                formula += e.target.textContent;
+                input = '';
                 updateScreen();
                 return;
             }
         }
-        formula += input + el.textContent;
+        formula += input + e.target.textContent;
         input = '';
         updateScreen();
-        return;
-    }
+    })
+})
 
-    input += el.textContent;
+equal.addEventListener('click', e => {
+    formula += input;
+    input = String(new Function('return ' + formula)());
+    formula = '';
     updateScreen();
 })
 
+percentage.addEventListener('click', e => {
+    input = String(input/100);
+    updateScreen();
+})
+
+plusmin.addEventListener('click', e => {
+    if(input.includes('-')){
+        input = input.substr(1, input.length);
+    }else{
+        input = '-'.concat(input);
+    }
+    updateScreen();
+})
+
+clearall.addEventListener('click', e => {
+    input = '';
+    formula = '';
+    updateScreen();
+})
 
 backspace.addEventListener('click', e => {
-    input = input.substr(0, input.length - 1);
+    input = input.substr(0, input.length -1);
     updateScreen();
 })
 
 const updateScreen = () => {
-    document.querySelector('.input').textContent = input || 0;
+    document.querySelector('.now-input').textContent = input || 0;
+    document.querySelector('.previous-input').textContent = formula;
 }
